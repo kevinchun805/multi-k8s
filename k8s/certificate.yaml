@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: kevinc-app-tls
+spec:
+  secretName: kevinc-app
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: kevinc.app
+  dnsNames:
+    - kevinc.app
+    - www.kevinc.app
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - kevinc.app
+          - www.kevinc.app
+          
